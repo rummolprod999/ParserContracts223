@@ -14,6 +14,19 @@ namespace ParserContracts223
         {
 
             string resD = DownloadFile.DownL(_urlContract);
+            if (resD == "")
+            {
+                Log.Logger("Не удалось получить архив за 10 попыток", _urlContract);
+                return;
+            }
+
+            string file = Unzipped.Unzip(resD);
+            if (file == "")
+            {
+                Log.Logger("Не разархивировали файл", resD);
+                return;
+            }
+
         }
     }
 }
