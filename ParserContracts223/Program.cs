@@ -15,7 +15,6 @@ namespace ParserContracts223
         public static string FileLog;
 
 
-
         public static void Main(string[] args)
         {
             Setting set = new Setting();
@@ -27,10 +26,8 @@ namespace ParserContracts223
             List<string> Listurl = FileList.GetUrl();
             foreach (var l in Listurl)
             {
-                Console.WriteLine(l);
-            }
-            {
-
+                Parser p = new Parser(l);
+                p.Parse();
             }
         }
     }

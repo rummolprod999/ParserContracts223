@@ -16,7 +16,7 @@ namespace ParserContracts223
         public static List<string> GetUrl()
         {
             List<string> urls = new List<string>();
-            string[] years = new[] {"2015", "2016", "2017"};
+            string[] years = new[] {"_2015", "_2016", "_2017"};
 
             var request = WebRequest.Create(_urlClearspending);
             using (var responses = request.GetResponse())
@@ -36,12 +36,16 @@ namespace ParserContracts223
                             if (n.Attributes["href"] != null)
                             {
                                 string u = n.Attributes["href"].Value;
-                                for (int i = 0; years.Length )
-                                if (u.IndexOf("_2016", StringComparison.Ordinal) != -1 || u.IndexOf("_2017", StringComparison.Ordinal) != -1)
+                                for (int i = 0; i < years.Length; i++)
                                 {
-                                    u = $"https://clearspending.ru{u}";
-                                    urls.Add(u);
+                                    if (u.IndexOf(years[i], StringComparison.Ordinal) != -1)
+                                    {
+                                        u = $"https://clearspending.ru{u}";
+                                        urls.Add(u);
+                                        break;
+                                    }
                                 }
+
                             }
                         }
                     }
