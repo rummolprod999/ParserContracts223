@@ -24,7 +24,14 @@ namespace ParserContracts223
             logdir = set.logdir;
             FileLog = $"./{Logdir}/contracts223_{localDate:dd_MM_yyyy}.log";
             Log.Logger("Время начала парсинга");
-            FileList.GetUrl();
+            List<string> Listurl = FileList.GetUrl();
+            foreach (var l in Listurl)
+            {
+                Console.WriteLine(l);
+            }
+            {
+
+            }
         }
     }
 }

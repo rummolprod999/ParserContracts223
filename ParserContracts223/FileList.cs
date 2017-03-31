@@ -4,6 +4,8 @@ using System.Net;
 using System.Web;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ParserContracts223
 {
@@ -11,8 +13,11 @@ namespace ParserContracts223
     {
         private static string _urlClearspending = "https://clearspending.ru/opendata/";
 
-        public static void GetUrl()
+        public static List<string> GetUrl()
         {
+            List<string> urls = new List<string>();
+            string[] years = new[] {"2015", "2016", "2017"};
+
             var request = WebRequest.Create(_urlClearspending);
             using (var responses = request.GetResponse())
             {
@@ -20,13 +25,10 @@ namespace ParserContracts223
                 using (var readers = new StreamReader(streams))
                 {
                     string html = readers.ReadToEnd();
-//                   Console.WriteLine(html);
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(html);
-                    Console.WriteLine(doc.ToString());
                     HtmlNodeCollection c =
                         doc.DocumentNode.SelectNodes("//a[contains(@href,'/download/opendata/contracts_223fz')]");
-                    Console.WriteLine(c.ToString());
                     if (c != null)
                     {
                         foreach (HtmlNode n in c)
@@ -34,12 +36,19 @@ namespace ParserContracts223
                             if (n.Attributes["href"] != null)
                             {
                                 string u = n.Attributes["href"].Value;
-                                Console.WriteLine(u);
+                                for (int i = 0; years.Length )
+                                if (u.IndexOf("_2016", StringComparison.Ordinal) != -1 || u.IndexOf("_2017", StringComparison.Ordinal) != -1)
+                                {
+                                    u = $"https://clearspending.ru{u}";
+                                    urls.Add(u);
+                                }
                             }
                         }
                     }
                 }
             }
+
+            return urls;
         }
     }
 }
