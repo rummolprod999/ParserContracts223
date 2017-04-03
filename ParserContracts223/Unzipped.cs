@@ -23,6 +23,7 @@ namespace ParserContracts223
                 {
                     Log.Logger("Не удалось извлечь файл", e);
                 }
+                fileInf.Delete();
             }
 
             return "";

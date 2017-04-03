@@ -37,7 +37,14 @@ namespace ParserContracts223
                     while ((line = sr.ReadLine()) != null)
                     {
                         line = clear_s(line);
-                        Parsing(line);
+                        try
+                        {
+                            Parsing(line);
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Logger(e);
+                        }
                     }
                 }
                 fileInf.Delete();
