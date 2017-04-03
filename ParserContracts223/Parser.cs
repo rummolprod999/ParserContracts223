@@ -124,7 +124,7 @@ namespace ParserContracts223
                 }
             }
             var test_sup = json.SelectToken("suppliers");
-            if (test_sup != null)
+            if (test_sup != null && test_sup.Type != JTokenType.Null)
             {
                 var suppliers = from s in json["suppliers"] select s;
                 foreach (var supplier in suppliers)
