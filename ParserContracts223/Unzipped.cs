@@ -17,13 +17,13 @@ namespace ParserContracts223
                 try
                 {
                     ZipFile.ExtractToDirectory(ar, $"./{Program.Tempdir}");
+                    fileInf.Delete();
                     return extractPath;
                 }
                 catch (Exception e)
                 {
                     Log.Logger("Не удалось извлечь файл", e);
                 }
-                fileInf.Delete();
             }
 
             return "";

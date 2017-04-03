@@ -7,6 +7,7 @@ namespace ParserContracts223
         public readonly string database;
         public readonly string tempdir;
         public readonly string logdir;
+        public readonly string suffix;
 
         public Setting()
         {
@@ -26,6 +27,10 @@ namespace ParserContracts223
                 else if(xnode.Name=="logdir")
                 {
                     logdir = xnode.InnerText;
+                }
+                else if(xnode.Name=="suffix")
+                {
+                    suffix = xnode.InnerText;
                 }
 
             }
