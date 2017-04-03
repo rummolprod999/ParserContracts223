@@ -19,11 +19,11 @@ namespace ParserContracts223
                     {
                         database = xnode.InnerText;
                     }
-                if(xnode.Name=="tempdir")
+                else if(xnode.Name=="tempdir")
                 {
                     tempdir = xnode.InnerText;
                 }
-                if(xnode.Name=="logdir")
+                else if(xnode.Name=="logdir")
                 {
                     logdir = xnode.InnerText;
                 }
