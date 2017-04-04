@@ -8,6 +8,8 @@ namespace ParserContracts223
         public readonly string tempdir;
         public readonly string logdir;
         public readonly string suffix;
+        public readonly string user;
+        public readonly string pass;
 
         public Setting()
         {
@@ -16,23 +18,27 @@ namespace ParserContracts223
             XmlElement xRoot = xDoc.DocumentElement;
             foreach (XmlNode xnode in xRoot)
             {
-                if(xnode.Name=="datebase")
-                    {
+                switch (xnode.Name)
+                {
+                    case "datebase":
                         database = xnode.InnerText;
-                    }
-                else if(xnode.Name=="tempdir")
-                {
-                    tempdir = xnode.InnerText;
+                        break;
+                    case "tempdir":
+                        tempdir = xnode.InnerText;
+                        break;
+                    case "logdir":
+                        logdir = xnode.InnerText;
+                        break;
+                    case "suffix":
+                        suffix = xnode.InnerText;
+                        break;
+                    case "user":
+                        user = xnode.InnerText;
+                        break;
+                    case "pass":
+                        pass = xnode.InnerText;
+                        break;
                 }
-                else if(xnode.Name=="logdir")
-                {
-                    logdir = xnode.InnerText;
-                }
-                else if(xnode.Name=="suffix")
-                {
-                    suffix = xnode.InnerText;
-                }
-
             }
         }
 

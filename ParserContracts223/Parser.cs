@@ -56,7 +56,7 @@ namespace ParserContracts223
 
         private void Parsing(string f)
         {
-            MySqlConnection connect = ConnectToDb.GetDBConnection("localhost", Program.Database, "test", "Dft56Point");
+            MySqlConnection connect = ConnectToDb.GetDBConnection("localhost", Program.Database, Program.User, Program.Pass);
             connect.Open();
             JObject json = JObject.Parse(f);
             double contract_price = (double?) json.SelectToken("price") ?? 0.0;

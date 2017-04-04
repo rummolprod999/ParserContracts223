@@ -11,10 +11,14 @@ namespace ParserContracts223
         private static string tempdir;
         private static string logdir;
         private static string suffix;
+        private static string user;
+        private static string pass;
         public static string Database => database;
         public static string Tempdir => tempdir;
         public static string Logdir => logdir;
         public static string Suffix => suffix;
+        public static string User => user;
+        public static string Pass => pass;
         private static readonly DateTime localDate = DateTime.Now;
         public static string FileLog;
         public static int add_customer = 0;
@@ -43,6 +47,8 @@ namespace ParserContracts223
             tempdir = set.tempdir;
             logdir = set.logdir;
             suffix = set.suffix;
+            user = set.user;
+            pass = set.pass;
             if (Directory.Exists(Tempdir))
             {
                 DirectoryInfo dirInfo = new DirectoryInfo(Tempdir);
