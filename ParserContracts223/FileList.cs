@@ -13,7 +13,7 @@ namespace ParserContracts223
     {
         private static string _urlClearspending = "https://clearspending.ru/opendata/";
 
-        public static List<string> GetUrl()
+        public static List<string> GetUrl(string findS)
         {
             List<string> urls = new List<string>();
             string[] years = new[] {"_2015", "_2016", "_2017"};
@@ -28,7 +28,7 @@ namespace ParserContracts223
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(html);
                     HtmlNodeCollection c =
-                        doc.DocumentNode.SelectNodes("//a[contains(@href,'/download/opendata/contracts_223fz')]");
+                        doc.DocumentNode.SelectNodes($"//a[contains(@href,'{findS}')]");
                     if (c != null)
                     {
                         foreach (HtmlNode n in c)
