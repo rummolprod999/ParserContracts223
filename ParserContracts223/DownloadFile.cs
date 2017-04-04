@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Web;
 
@@ -11,8 +12,8 @@ namespace ParserContracts223
             int ind = url.LastIndexOf("/");
             string namearch = url.Substring(ind + 1);
             string patharch = $"./{Program.Tempdir}/{namearch}";
-            int downCount = 10;
-            while (downCount >= -10)
+            int downCount = 0;
+            while (downCount >= -100)
             {
                 try
                 {
@@ -22,6 +23,11 @@ namespace ParserContracts223
                 }
                 catch (Exception e)
                 {
+                    FileInfo FileD = new FileInfo(patharch);
+                    if (FileD.Exists)
+                    {
+                        FileD.Delete();
+                    }
                     Log.Logger(e, url);
                 }
 
