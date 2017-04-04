@@ -63,7 +63,7 @@
     <Compile Include="DownloadFile.cs" />
     <Compile Include="FileList.cs" />
     <Compile Include="Log.cs" />
-    <Compile Include="Parser.cs" />
+    <Compile Include="Parser_contract223.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setting.cs" />

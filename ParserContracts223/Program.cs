@@ -32,7 +32,7 @@ namespace ParserContracts223
             List<string> Listurl = FileList.GetUrl();
             foreach (var l in Listurl)
             {
-                Parser p = new Parser(l);
+                Parser_contract223 p = new Parser_contract223(l);
                 p.Parse();
             }
             Log.Logger("Время окончания парсинга");

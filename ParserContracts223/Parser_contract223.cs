@@ -6,12 +6,12 @@ using Newtonsoft.Json.Linq;
 
 namespace ParserContracts223
 {
-    public class Parser
+    public class Parser_contract223
     {
         private readonly string _urlContract;
 
 
-        public Parser(string line)
+        public Parser_contract223(string line)
         {
             _urlContract = line;
         }
