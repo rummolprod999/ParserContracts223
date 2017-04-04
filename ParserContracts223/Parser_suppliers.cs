@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ParserContracts223
 {
-    public class ParserSuppliers
+    public class ParserSuppliers: IParser
     {
         private readonly string _urlSupplier;
 
@@ -19,7 +19,7 @@ namespace ParserContracts223
             string resD = DownloadFile.DownL(_urlSupplier);
             if (resD == "")
             {
-                Log.Logger("Не удалось получить архив за 10 попыток", _urlSupplier);
+                Log.Logger("Не удалось получить архив за 100 попыток", _urlSupplier);
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace ParserContracts223
                 fileInf.Delete();
             }
         }
-        private string clear_s(string s)
+        public string clear_s(string s)
         {
             string st = s;
             st = st.Trim();
@@ -71,7 +71,7 @@ namespace ParserContracts223
             return st;
         }
 
-        private void Parsing(string f)
+        public void Parsing(string f)
         {
 
             JObject json = JObject.Parse(f);
@@ -133,7 +133,7 @@ namespace ParserContracts223
                         int res_s = cmdInsertKpp.ExecuteNonQuery();
                         if (res_s>0)
                         {
-                            Program.add_supplier++;
+                            Program.AddSupplier++;
                         }
                         else
                         {
@@ -168,7 +168,7 @@ namespace ParserContracts223
                         int res_u = cmdUpdateKpp.ExecuteNonQuery();
                         if (res_u>0)
                         {
-                            Program.update_supplier++;
+                            Program.UpdateSupplier++;
                         }
                         else
                         {
@@ -211,7 +211,7 @@ namespace ParserContracts223
                         int res_s = cmdInsertInn.ExecuteNonQuery();
                         if (res_s>0)
                         {
-                            Program.add_supplier++;
+                            Program.AddSupplier++;
                         }
                         else
                         {
@@ -241,7 +241,7 @@ namespace ParserContracts223
                         int res_u = cmdUpdateInn.ExecuteNonQuery();
                         if (res_u>0)
                         {
-                            Program.update_supplier++;
+                            Program.UpdateSupplier++;
                         }
                         else
                         {
@@ -256,7 +256,7 @@ namespace ParserContracts223
             }
             else
             {
-                Program.inn_null_supplier++;
+                Program.InnNullSupplier++;
             }
         }
 

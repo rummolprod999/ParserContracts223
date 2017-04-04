@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ParserContracts223
 {
-    public class ParserContract223
+    public class ParserContract223: IParser
     {
         private readonly string _urlContract;
 
@@ -21,7 +21,7 @@ namespace ParserContracts223
             string resD = DownloadFile.DownL(_urlContract);
             if (resD == "")
             {
-                Log.Logger("Не удалось получить архив за 10 попыток", _urlContract);
+                Log.Logger("Не удалось получить архив за 100 попыток", _urlContract);
                 return;
             }
 
@@ -54,7 +54,7 @@ namespace ParserContracts223
             }
         }
 
-        private void Parsing(string f)
+        public void Parsing(string f)
         {
             MySqlConnection connect = ConnectToDb.GetDBConnection("localhost", Program.Database, Program.User, Program.Pass);
             connect.Open();
@@ -115,7 +115,7 @@ namespace ParserContracts223
                     int add_c = cmd2.ExecuteNonQuery();
                     if (add_c > 0)
                     {
-                        Program.add_customer++;
+                        Program.AddCustomer++;
                     }
                     else
                     {
@@ -189,7 +189,7 @@ namespace ParserContracts223
                             int add_s = cmd3.ExecuteNonQuery();
                             if (add_s > 0)
                             {
-                                Program.add_supplier++;
+                                Program.AddSupplier++;
                             }
                             else
                             {
@@ -205,7 +205,7 @@ namespace ParserContracts223
             connect = null;
         }
 
-        private string clear_s(string s)
+        public string clear_s(string s)
         {
             string st = s;
             st = st.Trim();

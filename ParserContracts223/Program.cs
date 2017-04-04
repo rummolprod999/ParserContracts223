@@ -19,12 +19,14 @@ namespace ParserContracts223
         public static string Suffix => suffix;
         public static string User => user;
         public static string Pass => pass;
-        private static readonly DateTime localDate = DateTime.Now;
+        private static readonly DateTime LocalDate = DateTime.Now;
         public static string FileLog;
-        public static int add_customer = 0;
-        public static int add_supplier = 0;
-        public static int update_supplier = 0;
-        public static int inn_null_supplier = 0;
+        public static int AddCustomer = 0;
+        public static int AddSupplier = 0;
+        public static int UpdateSupplier = 0;
+        public static int InnNullSupplier = 0;
+        public static int UpdateCustomer = 0;
+        public static int RegnumNullCustomer = 0;
 
 
         public static void Main(string[] args)
@@ -43,11 +45,11 @@ namespace ParserContracts223
                     Pars_contr223();
                     break;
                 case "supplier":
-                    Init("supplier");
+                    Init("suppliers");
                     Pars_suppliers();
                     break;
                 case "customer":
-                    Init("customer");
+                    Init("customers");
                     Pars_customers();
                     break;
                 default:
@@ -75,7 +77,7 @@ namespace ParserContracts223
             {
                 Directory.CreateDirectory(Tempdir);
             }
-            FileLog = $"./{Logdir}/{arg}_{localDate:dd_MM_yyyy}.log";
+            FileLog = $"./{Logdir}/{arg}_{LocalDate:dd_MM_yyyy}.log";
         }
 
         private static void Pars_contr223()
@@ -89,8 +91,8 @@ namespace ParserContracts223
             }
 
             Log.Logger("Время окончания парсинга");
-            Log.Logger("Добавили customer по contracts223", add_customer);
-            Log.Logger("Добавили supplier по contracts223", add_supplier);
+            Log.Logger("Добавили customer по contracts223", AddCustomer);
+            Log.Logger("Добавили supplier по contracts223", AddSupplier);
         }
 
         private static void Pars_suppliers()
@@ -104,13 +106,25 @@ namespace ParserContracts223
             }
 
             Log.Logger("Время окончания парсинга");
-            Log.Logger("Добавили supplier", add_supplier);
-            Log.Logger("Обновили supplier", update_supplier);
-            Log.Logger("supplier без инн", inn_null_supplier);
+            Log.Logger("Добавили supplier", AddSupplier);
+            Log.Logger("Обновили supplier", UpdateSupplier);
+            Log.Logger("supplier без инн", InnNullSupplier);
         }
 
         private static void Pars_customers()
         {
+            Log.Logger("Время начала парсинга customers");
+            List<string> Listurl = FileList.GetUrl("/download/opendata/customers-");
+            foreach (var l in Listurl)
+            {
+                ParserCustomers p = new ParserCustomers(l);
+                p.Parse();
+            }
+
+            Log.Logger("Время окончания парсинга");
+            Log.Logger("Добавили customer", AddCustomer);
+            Log.Logger("Обновили customer", UpdateCustomer);
+            Log.Logger("customer без RegNum", RegnumNullCustomer);
         }
     }
 }
