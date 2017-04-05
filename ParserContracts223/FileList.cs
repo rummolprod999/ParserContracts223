@@ -16,7 +16,7 @@ namespace ParserContracts223
         public static List<string> GetUrl(string findS)
         {
             List<string> urls = new List<string>();
-            string[] years = new[] {"_2015", "_2016", "_2017"};
+            string[] years = new[] {"2015", "2016", "2017"};
 
             var request = WebRequest.Create(_urlClearspending);
             using (var responses = request.GetResponse())
