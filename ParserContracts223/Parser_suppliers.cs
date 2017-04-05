@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ParserContracts223
 {
-    public class ParserSuppliers: IParser
+    public class ParserSuppliers : IParser
     {
         private readonly string _urlSupplier;
 
@@ -14,6 +14,7 @@ namespace ParserContracts223
         {
             _urlSupplier = line;
         }
+
         public void Parse()
         {
             string resD = DownloadFile.DownL(_urlSupplier);
@@ -37,7 +38,7 @@ namespace ParserContracts223
                     string line;
                     while ((line = sr.ReadLine()) != null)
                     {
-                        line = clear_s(line);
+                        line = Tools.ClearString(line);
                         try
                         {
                             Parsing(line);
@@ -51,29 +52,10 @@ namespace ParserContracts223
                 fileInf.Delete();
             }
         }
-        public string clear_s(string s)
-        {
-            string st = s;
-            st = st.Trim();
-            if (st.StartsWith("["))
-            {
-                st = st.Remove(0, 1);
-            }
-            if (st.IndexOf(',', (st.Length - 1)) != -1)
-            {
-                st = st.Remove(st.Length - 1);
-            }
-            if (st.IndexOf(']', (st.Length - 1)) != -1)
-            {
-                st = st.Remove(st.Length - 1);
-            }
 
-            return st;
-        }
 
         public void Parsing(string f)
         {
-
             JObject json = JObject.Parse(f);
             string kpp = (string) json.SelectToken("kpp") ?? "";
             int contracts223_count = (int?) json.SelectToken("contracts223Count") ?? 0;
@@ -131,7 +113,7 @@ namespace ParserContracts223
                         cmdInsertKpp.Parameters.AddWithValue("@contactEMail", contactEMail);
                         cmdInsertKpp.Parameters.AddWithValue("@contact_name", contact_name);
                         int res_s = cmdInsertKpp.ExecuteNonQuery();
-                        if (res_s>0)
+                        if (res_s > 0)
                         {
                             Program.AddSupplier++;
                         }
@@ -166,7 +148,7 @@ namespace ParserContracts223
                         cmdUpdateKpp.Parameters.AddWithValue("@contactEMail", contactEMail);
                         cmdUpdateKpp.Parameters.AddWithValue("@contact_name", contact_name);
                         int res_u = cmdUpdateKpp.ExecuteNonQuery();
-                        if (res_u>0)
+                        if (res_u > 0)
                         {
                             Program.UpdateSupplier++;
                         }
@@ -209,7 +191,7 @@ namespace ParserContracts223
                         cmdInsertInn.Parameters.AddWithValue("@contactEMail", contactEMail);
                         cmdInsertInn.Parameters.AddWithValue("@contact_name", contact_name);
                         int res_s = cmdInsertInn.ExecuteNonQuery();
-                        if (res_s>0)
+                        if (res_s > 0)
                         {
                             Program.AddSupplier++;
                         }
@@ -239,7 +221,7 @@ namespace ParserContracts223
                         cmdUpdateInn.Parameters.AddWithValue("@contactEMail", contactEMail);
                         cmdUpdateInn.Parameters.AddWithValue("@contact_name", contact_name);
                         int res_u = cmdUpdateInn.ExecuteNonQuery();
-                        if (res_u>0)
+                        if (res_u > 0)
                         {
                             Program.UpdateSupplier++;
                         }
@@ -259,6 +241,5 @@ namespace ParserContracts223
                 Program.InnNullSupplier++;
             }
         }
-
     }
 }

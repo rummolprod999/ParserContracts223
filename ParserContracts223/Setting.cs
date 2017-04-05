@@ -4,12 +4,14 @@ namespace ParserContracts223
 {
     public class Setting
     {
-        public readonly string database;
-        public readonly string tempdir;
-        public readonly string logdir;
-        public readonly string suffix;
-        public readonly string user;
-        public readonly string pass;
+        public readonly string Database;
+        public readonly string TempdirContract223;
+        public readonly string TempdirSupplier;
+        public readonly string TempdirCustomer;
+        public readonly string Logdir;
+        public readonly string Suffix;
+        public readonly string User;
+        public readonly string Pass;
 
         public Setting()
         {
@@ -20,23 +22,29 @@ namespace ParserContracts223
             {
                 switch (xnode.Name)
                 {
-                    case "datebase":
-                        database = xnode.InnerText;
+                case "datebase":
+                        Database = xnode.InnerText;
                         break;
-                    case "tempdir":
-                        tempdir = xnode.InnerText;
+                    case "temp_contract223":
+                        TempdirContract223 = xnode.InnerText;
+                        break;
+                    case "temp_customer":
+                        TempdirCustomer = xnode.InnerText;
+                        break;
+                    case "temp_supplier":
+                        TempdirSupplier = xnode.InnerText;
                         break;
                     case "logdir":
-                        logdir = xnode.InnerText;
+                        Logdir = xnode.InnerText;
                         break;
                     case "suffix":
-                        suffix = xnode.InnerText;
+                        Suffix = xnode.InnerText;
                         break;
                     case "user":
-                        user = xnode.InnerText;
+                        User = xnode.InnerText;
                         break;
                     case "pass":
-                        pass = xnode.InnerText;
+                        Pass = xnode.InnerText;
                         break;
                 }
             }

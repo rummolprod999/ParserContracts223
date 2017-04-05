@@ -7,18 +7,18 @@ namespace ParserContracts223
 {
     internal class Program
     {
-        private static string database;
-        private static string tempdir;
-        private static string logdir;
-        private static string suffix;
-        private static string user;
-        private static string pass;
-        public static string Database => database;
-        public static string Tempdir => tempdir;
-        public static string Logdir => logdir;
-        public static string Suffix => suffix;
-        public static string User => user;
-        public static string Pass => pass;
+        private static string _database;
+        private static string _tempdir;
+        private static string _logdir;
+        private static string _suffix;
+        private static string _user;
+        private static string _pass;
+        public static string Database => _database;
+        public static string Tempdir => _tempdir;
+        public static string Logdir => _logdir;
+        public static string Suffix => _suffix;
+        public static string User => _user;
+        public static string Pass => _pass;
         private static readonly DateTime LocalDate = DateTime.Now;
         public static string FileLog;
         public static int AddCustomer = 0;
@@ -61,12 +61,23 @@ namespace ParserContracts223
         private static void Init(string arg)
         {
             Setting set = new Setting();
-            database = set.database;
-            tempdir = set.tempdir;
-            logdir = set.logdir;
-            suffix = set.suffix;
-            user = set.user;
-            pass = set.pass;
+            _database = set.Database;
+            _logdir = set.Logdir;
+            _suffix = set.Suffix;
+            _user = set.User;
+            _pass = set.Pass;
+            switch (arg)
+            {
+                case "contr223":
+                    _tempdir = set.TempdirContract223;
+                    break;
+                case "suppliers":
+                    _tempdir = set.TempdirSupplier;
+                    break;
+                case "customers":
+                    _tempdir = set.TempdirCustomer;
+                    break;
+            }
             if (Directory.Exists(Tempdir))
             {
                 DirectoryInfo dirInfo = new DirectoryInfo(Tempdir);
@@ -76,6 +87,10 @@ namespace ParserContracts223
             else
             {
                 Directory.CreateDirectory(Tempdir);
+            }
+            if (!Directory.Exists(Logdir))
+            {
+                Directory.CreateDirectory(Logdir);
             }
             FileLog = $"./{Logdir}/{arg}_{LocalDate:dd_MM_yyyy}.log";
         }

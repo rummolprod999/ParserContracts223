@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ParserContracts223
 {
-    public class ParserCustomers: IParser
+    public class ParserCustomers : IParser
     {
         private readonly string _urlCustomer;
 
@@ -38,7 +38,7 @@ namespace ParserContracts223
                     string line;
                     while ((line = sr.ReadLine()) != null)
                     {
-                        line = clear_s(line);
+                        line = Tools.ClearString(line);
                         try
                         {
                             Parsing(line);
@@ -54,28 +54,74 @@ namespace ParserContracts223
             }
         }
 
-        public string clear_s(string s)
-        {
-            string st = s;
-            st = st.Trim();
-            if (st.StartsWith("["))
-            {
-                st = st.Remove(0, 1);
-            }
-            if (st.IndexOf(',', (st.Length - 1)) != -1)
-            {
-                st = st.Remove(st.Length - 1);
-            }
-            if (st.IndexOf(']', (st.Length - 1)) != -1)
-            {
-                st = st.Remove(st.Length - 1);
-            }
-
-            return st;
-        }
 
         public void Parsing(string f)
         {
+            MySqlConnection connect =
+                ConnectToDb.GetDBConnection("localhost", Program.Database, Program.User, Program.Pass);
+            connect.Open();
+            JObject json = JObject.Parse(f);
+            string customer_regnumber = (string) json.SelectToken("regNumber") ?? "";
+            customer_regnumber = customer_regnumber.Trim();
+            if (customer_regnumber != "")
+            {
+                string kpp_customer = (string) json.SelectToken("kpp") ?? "";
+                int contracts223_count_customer = (int?) json.SelectToken("contracts223Count") ?? 0;
+                int contracts_count_customer = (int?) json.SelectToken("contractsCount") ?? 0;
+                double contracts223_sum_customer = (double?) json.SelectToken("contracts223Sum") ?? 0.0;
+                double contracts_sum_customer = (double?) json.SelectToken("contractsSum") ?? 0.0;
+                string ogrn_customer = (string) json.SelectToken("ogrn") ?? "";
+                string region_code_customer = (string) json.SelectToken("regionCode") ?? "";
+                string full_name_customer = (string) json.SelectToken("fullName") ?? "";
+                string fax_customer = (string) json.SelectToken("fax") ?? "";
+                string email_customer = (string) json.SelectToken("url") ?? "не указан";
+                string phone_customer = (string) json.SelectToken("phone") ?? "";
+                string middlename = (string) json.SelectToken("contactPerson.middleName") ?? "";
+                string firstname = (string) json.SelectToken("contactPerson.firstName") ?? "";
+                string lastname = (string) json.SelectToken("contactPerson.lastName") ?? "";
+                string contact_name_customer = $"{firstname} {middlename} {lastname}";
+                string inn_customer = (string) json.SelectToken("inn") ?? "";
+                string postal_address_customer = (string) json.SelectToken("postalAddress") ?? "";
+                string add_customer =
+                    $"INSERT INTO od_customer{Program.Suffix} SET regNumber = @customer_regnumber, inn = @inn_customer, " +
+                    $"kpp = @kpp_customer, contracts_count = @contracts_count_customer, contracts223_count = @contracts223_count_customer," +
+                    $"contracts_sum = @contracts_sum_customer, contracts223_sum = @contracts223_sum_customer," +
+                    $"ogrn = @ogrn_customer, region_code = @region_code_customer, full_name = @full_name_customer," +
+                    $"postal_address = @postal_address_customer, phone = @phone_customer, fax = @fax_customer," +
+                    $"email = @email_customer, contact_name = @contact_name_customer";
+                MySqlCommand cmd2 = new MySqlCommand(add_customer, connect);
+                cmd2.Prepare();
+                cmd2.Parameters.AddWithValue("@customer_regnumber", customer_regnumber);
+                cmd2.Parameters.AddWithValue("@inn_customer", inn_customer);
+                cmd2.Parameters.AddWithValue("@kpp_customer", kpp_customer);
+                cmd2.Parameters.AddWithValue("@contracts_count_customer", contracts_count_customer);
+                cmd2.Parameters.AddWithValue("@contracts223_count_customer", contracts223_count_customer);
+                cmd2.Parameters.AddWithValue("@contracts_sum_customer", contracts_sum_customer);
+                cmd2.Parameters.AddWithValue("@contracts223_sum_customer", contracts223_sum_customer);
+                cmd2.Parameters.AddWithValue("@ogrn_customer", ogrn_customer);
+                cmd2.Parameters.AddWithValue("@region_code_customer", region_code_customer);
+                cmd2.Parameters.AddWithValue("@full_name_customer", full_name_customer);
+                cmd2.Parameters.AddWithValue("@postal_address_customer", postal_address_customer);
+                cmd2.Parameters.AddWithValue("@phone_customer", phone_customer);
+                cmd2.Parameters.AddWithValue("@fax_customer", fax_customer);
+                cmd2.Parameters.AddWithValue("@email_customer", email_customer);
+                cmd2.Parameters.AddWithValue("@contact_name_customer", contact_name_customer);
+                int add_c = cmd2.ExecuteNonQuery();
+                if (add_c > 0)
+                {
+                    Program.AddCustomer++;
+                }
+                else
+                {
+                    Log.Logger("Не удалось добавить customer", _urlCustomer);
+                }
+            }
+            else
+            {
+                Program.RegnumNullCustomer++;
+            }
+            connect.Close();
+            connect = null;
         }
     }
 }

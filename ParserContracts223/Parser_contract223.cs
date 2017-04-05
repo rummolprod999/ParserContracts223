@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ParserContracts223
 {
-    public class ParserContract223: IParser
+    public class ParserContract223 : IParser
     {
         private readonly string _urlContract;
 
@@ -39,7 +39,7 @@ namespace ParserContracts223
                     string line;
                     while ((line = sr.ReadLine()) != null)
                     {
-                        line = clear_s(line);
+                        line = Tools.ClearString(line);
                         try
                         {
                             Parsing(line);
@@ -56,7 +56,8 @@ namespace ParserContracts223
 
         public void Parsing(string f)
         {
-            MySqlConnection connect = ConnectToDb.GetDBConnection("localhost", Program.Database, Program.User, Program.Pass);
+            MySqlConnection connect =
+                ConnectToDb.GetDBConnection("localhost", Program.Database, Program.User, Program.Pass);
             connect.Open();
             JObject json = JObject.Parse(f);
             double contract_price = (double?) json.SelectToken("price") ?? 0.0;
@@ -203,26 +204,6 @@ namespace ParserContracts223
 
             connect.Close();
             connect = null;
-        }
-
-        public string clear_s(string s)
-        {
-            string st = s;
-            st = st.Trim();
-            if (st.StartsWith("["))
-            {
-                st = st.Remove(0, 1);
-            }
-            if (st.IndexOf(',', (st.Length - 1)) != -1)
-            {
-                st = st.Remove(st.Length - 1);
-            }
-            if (st.IndexOf(']', (st.Length - 1)) != -1)
-            {
-                st = st.Remove(st.Length - 1);
-            }
-
-            return st;
         }
     }
 }
