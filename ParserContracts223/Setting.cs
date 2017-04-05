@@ -25,13 +25,13 @@ namespace ParserContracts223
                 case "datebase":
                         Database = xnode.InnerText;
                         break;
-                    case "temp_contract223":
+                    case "tempdir_contract223":
                         TempdirContract223 = xnode.InnerText;
                         break;
-                    case "temp_customer":
+                    case "tempdir_customer":
                         TempdirCustomer = xnode.InnerText;
                         break;
-                    case "temp_supplier":
+                    case "tempdir_supplier":
                         TempdirSupplier = xnode.InnerText;
                         break;
                     case "logdir":
