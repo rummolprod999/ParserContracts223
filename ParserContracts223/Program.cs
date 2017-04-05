@@ -27,7 +27,7 @@ namespace ParserContracts223
         public static int InnNullSupplier = 0;
         public static int UpdateCustomer = 0;
         public static int RegnumNullCustomer = 0;
-
+        public static string Typeparsing;
 
         public static void Main(string[] args)
         {
@@ -37,7 +37,7 @@ namespace ParserContracts223
                 return;
             }
 
-
+            Typeparsing = args[0];
             switch (args[0])
             {
                 case "contr223":

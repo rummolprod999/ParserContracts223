@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParserContracts223
 {
@@ -16,7 +17,7 @@ namespace ParserContracts223
         public static List<string> GetUrl(string findS)
         {
             List<string> urls = new List<string>();
-            string[] years = new[] {"2015", "2016", "2017"};
+            string[] years = new[] {"_2015", "_2016", "_2017"};
 
             var request = WebRequest.Create(_urlClearspending);
             using (var responses = request.GetResponse())
@@ -36,16 +37,19 @@ namespace ParserContracts223
                             if (n.Attributes["href"] != null)
                             {
                                 string u = n.Attributes["href"].Value;
-                                for (int i = 0; i < years.Length; i++)
+                                if (Program.Typeparsing == "contr223")
                                 {
-                                    if (u.IndexOf(years[i], StringComparison.Ordinal) != -1)
+                                    if (years.Any(t => u.IndexOf(t, StringComparison.Ordinal) != -1))
                                     {
                                         u = $"https://clearspending.ru{u}";
                                         urls.Add(u);
-                                        break;
                                     }
                                 }
-
+                                else
+                                {
+                                    u = $"https://clearspending.ru{u}";
+                                    urls.Add(u);
+                                }
                             }
                         }
                     }
