@@ -7,9 +7,9 @@ namespace ParserContracts223
 {
     public class DownloadFile
     {
-        static bool DownCount = true;
+        private bool DownCount = true;
 
-        public static string DownLOld(string url)
+        public string DownLOld(string url)
         {
             int ind = url.LastIndexOf("/");
             string namearch = url.Substring(ind + 1);
@@ -39,7 +39,7 @@ namespace ParserContracts223
             return "";
         }
 
-        static void DownloadF(string sSourceURL, string sDestinationPath)
+        public void DownloadF(string sSourceURL, string sDestinationPath)
         {
             long iFileSize = 0;
             int iBufferSize = 1024;
@@ -78,6 +78,9 @@ namespace ParserContracts223
                 {
                     saveFileStream.Write(downBuffer, 0, iByteSize);
                 }
+                saveFileStream.Dispose();
+                saveFileStream.Close();
+                saveFileStream = null;
             }
             catch (WebException ex)
             {
@@ -87,10 +90,13 @@ namespace ParserContracts223
                 {
                     DownCount = false;
                 }
+                saveFileStream.Dispose();
+                saveFileStream.Close();
+                saveFileStream = null;
             }
         }
 
-        public static string DownL(string url)
+        public string DownL(string url)
         {
             int ind = url.LastIndexOf("/");
             string namearch = url.Substring(ind + 1);

@@ -17,7 +17,8 @@ namespace ParserContracts223
 
         public void Parse()
         {
-            string resD = DownloadFile.DownL(_urlSupplier);
+            DownloadFile Df = new DownloadFile();
+            string resD = Df.DownL(_urlSupplier);
             if (resD == "")
             {
                 Log.Logger("Не удалось получить архив за 100 попыток", _urlSupplier);
