@@ -27,7 +27,7 @@ namespace ParserContracts223
         public static int InnNullSupplier = 0;
         public static int UpdateCustomer = 0;
         public static int RegnumNullCustomer = 0;
-        public static string Typeparsing;
+        public static TypeArgument Typeparsing;
 
         public static void Main(string[] args)
         {
@@ -37,18 +37,20 @@ namespace ParserContracts223
                 return;
             }
 
-            Typeparsing = args[0];
             switch (args[0])
             {
                 case "contr223":
+                    Typeparsing = TypeArgument.Contr223;
                     Init("contr223");
                     Pars_contr223();
                     break;
                 case "supplier":
+                    Typeparsing = TypeArgument.Supplier;
                     Init("suppliers");
                     Pars_suppliers();
                     break;
                 case "customer":
+                    Typeparsing = TypeArgument.Customer;
                     Init("customers");
                     Pars_customers();
                     break;

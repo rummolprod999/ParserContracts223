@@ -37,7 +37,7 @@ namespace ParserContracts223
                             if (n.Attributes["href"] != null)
                             {
                                 string u = n.Attributes["href"].Value;
-                                if (Program.Typeparsing == "contr223")
+                                if (Program.Typeparsing == TypeArgument.Contr223)
                                 {
                                     if (years.Any(t => u.IndexOf(t, StringComparison.Ordinal) != -1))
                                     {
