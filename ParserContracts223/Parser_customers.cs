@@ -67,6 +67,7 @@ namespace ParserContracts223
             if (customer_regnumber != "")
             {
                 string kpp_customer = (string) json.SelectToken("kpp") ?? "";
+                kpp_customer = kpp_customer.Trim();
                 int contracts223_count_customer = (int?) json.SelectToken("contracts223Count") ?? 0;
                 int contracts_count_customer = (int?) json.SelectToken("contractsCount") ?? 0;
                 double contracts223_sum_customer = (double?) json.SelectToken("contracts223Sum") ?? 0.0;
@@ -82,6 +83,7 @@ namespace ParserContracts223
                 string lastname = (string) json.SelectToken("contactPerson.lastName") ?? "";
                 string contact_name_customer = $"{firstname} {middlename} {lastname}";
                 string inn_customer = (string) json.SelectToken("inn") ?? "";
+                inn_customer = inn_customer.Trim();
                 string postal_address_customer = (string) json.SelectToken("postalAddress") ?? "";
                 string select_customer =
                     $"SELECT id FROM od_customer{Program.Suffix} WHERE regNumber = @customer_regnumber";

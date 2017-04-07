@@ -77,8 +77,10 @@ namespace ParserContracts223
                 if (!res_read)
                 {
                     string kpp_customer = (string) json.SelectToken("customer.kpp") ?? "";
+                    kpp_customer = kpp_customer.Trim();
                     string full_name_customer = (string) json.SelectToken("customer.fullName") ?? "";
                     string inn_customer = (string) json.SelectToken("customer.inn") ?? "";
+                    inn_customer = inn_customer.Trim();
                     string postal_address_customer = (string) json.SelectToken("customer.postalAddress") ?? "";
                     string fax_customer = (string) json.SelectToken("customer.fax") ?? "";
                     string ogrn_customer = (string) json.SelectToken("customer.OGRN") ?? "";

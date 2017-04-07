@@ -59,6 +59,7 @@ namespace ParserContracts223
         {
             JObject json = JObject.Parse(f);
             string kpp = (string) json.SelectToken("kpp") ?? "";
+            kpp = kpp.Trim();
             int contracts223_count = (int?) json.SelectToken("contracts223Count") ?? 0;
             int contracts_count = (int?) json.SelectToken("contractsCount") ?? 0;
             double contracts223_sum = (double?) json.SelectToken("contracts223Sum") ?? 0.0;
@@ -76,6 +77,7 @@ namespace ParserContracts223
             string contact_name = $"{firstName} {middleName} {lastName}";
 //            Console.WriteLine(contact_name + "\n\n");
             string inn = (string) json.SelectToken("inn") ?? "";
+            inn = inn.Trim();
             if (inn != "")
             {
                 MySqlConnection connect =
