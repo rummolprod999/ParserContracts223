@@ -135,11 +135,9 @@ namespace ParserContracts223
                 {
                     /*Console.WriteLine(supplier.ToString());*/
                     string supplier_inn = (string) supplier.SelectToken("inn") ?? "";
-
                     supplier_inn = supplier_inn.Trim();
                     string kpp_supplier = (string) supplier.SelectToken("kpp") ?? "";
                     kpp_supplier = kpp_supplier.Trim();
-
                     if (supplier_inn != "")
                     {
                         string select_supplier =
