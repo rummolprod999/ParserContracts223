@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ParserContracts223
 {
-    public class ParserContract223 : IParser
+    public class ParserContract223: IParser
     {
         private readonly string _urlContract;
 
@@ -58,7 +58,7 @@ namespace ParserContracts223
         public void Parsing(string f)
         {
             MySqlConnection connect =
-                ConnectToDb.GetDBConnection("localhost", Program.Database, Program.User, Program.Pass);
+                ConnectToDb.GetDBConnection();
             connect.Open();
             JObject json = JObject.Parse(f);
             double contract_price = (double?) json.SelectToken("price") ?? 0.0;

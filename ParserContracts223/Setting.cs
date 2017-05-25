@@ -12,6 +12,8 @@ namespace ParserContracts223
         public readonly string Suffix;
         public readonly string User;
         public readonly string Pass;
+        public readonly string Server;
+        public readonly int Port;
 
         public Setting()
         {
@@ -45,6 +47,12 @@ namespace ParserContracts223
                         break;
                     case "pass":
                         Pass = xnode.InnerText;
+                        break;
+                    case "server":
+                        Server = xnode.InnerText;
+                        break;
+                    case "port":
+                        Port = Int32.Parse(xnode.InnerText);
                         break;
                 }
             }

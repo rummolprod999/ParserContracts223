@@ -13,12 +13,16 @@ namespace ParserContracts223
         private static string _suffix;
         private static string _user;
         private static string _pass;
+        private static string _server;
+        private static int _port;
         public static string Database => _database;
         public static string Tempdir => _tempdir;
         public static string Logdir => _logdir;
         public static string Suffix => _suffix;
         public static string User => _user;
         public static string Pass => _pass;
+        public static string Server => _server;
+        public static int Port => _port;
         private static readonly DateTime LocalDate = DateTime.Now;
         public static string FileLog;
         public static int AddCustomer = 0;
@@ -68,6 +72,8 @@ namespace ParserContracts223
             _suffix = set.Suffix;
             _user = set.User;
             _pass = set.Pass;
+            _server = set.Server;
+            _port = set.Port;
             switch (arg)
             {
                 case "contr223":

@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ParserContracts223
 {
-    public class ParserSuppliers : IParser
+    public class ParserSuppliers: IParser
     {
         private readonly string _urlSupplier;
 
@@ -81,7 +81,7 @@ namespace ParserContracts223
             if (inn != "")
             {
                 MySqlConnection connect =
-                    ConnectToDb.GetDBConnection("localhost", Program.Database, Program.User, Program.Pass);
+                    ConnectToDb.GetDBConnection();
                 connect.Open();
                 if (kpp != "")
                 {

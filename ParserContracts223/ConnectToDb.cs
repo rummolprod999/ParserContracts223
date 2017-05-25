@@ -10,11 +10,11 @@ namespace ParserContracts223
     public class ConnectToDb
     {
         public static MySqlConnection
-            GetDBConnection(string host, string database, string username, string password)
+            GetDBConnection()
         {
             // Connection String.
-            String connString = "Server=" + host + ";Database=" + database
-                                + ";User Id=" + username + ";password=" + password + ";CharSet=utf8";
+            String connString = "Server=" + Program.Server + ";Port=" + Program.Port + ";Database=" + Program.Database
+                                + ";User Id=" + Program.User + ";password=" + Program.Pass + ";CharSet=utf8";
 
             MySqlConnection conn = new MySqlConnection(connString);
 
