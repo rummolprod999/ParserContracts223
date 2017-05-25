@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Remoting.Channels;
 using System.Web.Configuration;
 
 namespace ParserContracts223
@@ -103,6 +104,7 @@ namespace ParserContracts223
             FileLog = $"./{Logdir}/{arg}_{LocalDate:dd_MM_yyyy}.log";
         }
 
+        
         private static void Pars_contr223()
         {
             Log.Logger("Время начала парсинга contracts223");
