@@ -16,7 +16,7 @@ namespace ParserContracts223
                 string extractPath = ar.Substring(0, ind);
                 try
                 {
-                    ZipFile.ExtractToDirectory(ar, $"./{Program.Tempdir}");
+                    ZipFile.ExtractToDirectory(ar, $"{Program.Tempdir}");
                     fileInf.Delete();
                     return extractPath;
                 }

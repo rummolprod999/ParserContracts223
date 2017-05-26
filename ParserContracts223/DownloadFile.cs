@@ -13,7 +13,7 @@ namespace ParserContracts223
         {
             int ind = url.LastIndexOf("/");
             string namearch = url.Substring(ind + 1);
-            string patharch = $"./{Program.Tempdir}/{namearch}";
+            string patharch = $"{Program.Tempdir}{Path.DirectorySeparatorChar}{namearch}";
             int downCount = 0;
             while (downCount >= -100)
             {
@@ -100,7 +100,7 @@ namespace ParserContracts223
         {
             int ind = url.LastIndexOf("/");
             string namearch = url.Substring(ind + 1);
-            string patharch = $"./{Program.Tempdir}/{namearch}";
+            string patharch = $"{Program.Tempdir}{Path.DirectorySeparatorChar}{namearch}";
             while (DownCount)
             {
                 try

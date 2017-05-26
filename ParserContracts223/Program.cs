@@ -33,6 +33,7 @@ namespace ParserContracts223
         public static int UpdateCustomer = 0;
         public static int RegnumNullCustomer = 0;
         public static TypeArgument Typeparsing;
+        public static string PathProgram;
 
         public static void Main(string[] args)
         {
@@ -41,6 +42,10 @@ namespace ParserContracts223
                 Console.WriteLine("Недостаточно аргументов для запуска, используйте customer, supplier или contr223");
                 return;
             }
+
+            string path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName()
+                .CodeBase);
+            if (path != null) PathProgram = path.Substring(5);
 
             switch (args[0])
             {
@@ -101,10 +106,9 @@ namespace ParserContracts223
             {
                 Directory.CreateDirectory(Logdir);
             }
-            FileLog = $"./{Logdir}/{arg}_{LocalDate:dd_MM_yyyy}.log";
+            FileLog = $"{Logdir}{Path.DirectorySeparatorChar}{arg}_{LocalDate:dd_MM_yyyy}.log";
         }
 
-        
         private static void Pars_contr223()
         {
             Log.Logger("Время начала парсинга contracts223");

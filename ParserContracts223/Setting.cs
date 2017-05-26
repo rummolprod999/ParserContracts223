@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml;
+using System.IO;
 namespace ParserContracts223
 {
     public class Setting
@@ -18,7 +19,7 @@ namespace ParserContracts223
         public Setting()
         {
             XmlDocument xDoc = new XmlDocument();
-            xDoc.Load("setting.xml");
+            xDoc.Load(Program.PathProgram + Path.DirectorySeparatorChar + "setting.xml");
             XmlElement xRoot = xDoc.DocumentElement;
             foreach (XmlNode xnode in xRoot)
             {
@@ -28,16 +29,16 @@ namespace ParserContracts223
                         Database = xnode.InnerText;
                         break;
                     case "tempdir_contract223":
-                        TempdirContract223 = xnode.InnerText;
+                        TempdirContract223 = $"{Program.PathProgram}{Path.DirectorySeparatorChar}{xnode.InnerText}";
                         break;
                     case "tempdir_customer":
-                        TempdirCustomer = xnode.InnerText;
+                        TempdirCustomer = $"{Program.PathProgram}{Path.DirectorySeparatorChar}{xnode.InnerText}";
                         break;
                     case "tempdir_supplier":
-                        TempdirSupplier = xnode.InnerText;
+                        TempdirSupplier = $"{Program.PathProgram}{Path.DirectorySeparatorChar}{xnode.InnerText}";
                         break;
                     case "logdir":
-                        Logdir = xnode.InnerText;
+                        Logdir = $"{Program.PathProgram}{Path.DirectorySeparatorChar}{xnode.InnerText}";
                         break;
                     case "suffix":
                         Suffix = xnode.InnerText;
