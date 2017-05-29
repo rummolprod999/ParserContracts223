@@ -1,0 +1,14 @@
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/obj/Release/ParserContracts223.csprojResolveAssemblyReference.cache
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/obj/Release/ParserContracts223.csproj.CoreCompileInputs.cache
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/obj/Release/ParserContracts223.exe
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/ParserContracts223.exe.config
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/ParserContracts223.exe
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release//ParserContracts223.pdb
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/HtmlAgilityPack.CssSelectors.dll
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/HtmlAgilityPack.dll
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/MySql.Data.dll
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/Newtonsoft.Json.dll
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/HtmlAgilityPack.pdb
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/HtmlAgilityPack.CssSelectors.pdb
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/Newtonsoft.Json.xml
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/obj/Release/ParserContracts223.pdb

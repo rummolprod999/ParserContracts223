@@ -1,0 +1,10 @@
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Debug/ParserContracts223.exe.mdb
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Debug/ParserContracts223.exe
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/obj/Debug/ParserContracts223.exe
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/obj/Debug/ParserContracts223.exe.mdb
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Debug/ParserContracts223.exe.config
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Debug/MySql.Data.dll
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Debug/HtmlAgilityPack.dll
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Debug/HtmlAgilityPack.CssSelectors.dll
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Debug/Newtonsoft.Json.dll
