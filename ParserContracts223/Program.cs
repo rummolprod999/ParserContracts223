@@ -52,17 +52,38 @@ namespace ParserContracts223
                 case "contr223":
                     Typeparsing = TypeArgument.Contr223;
                     Init("contr223");
-                    Pars_contr223();
+                    try
+                    {
+                        Pars_contr223();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Logger("Ошибка при парсинге contr223", e);
+                    }
                     break;
                 case "supplier":
                     Typeparsing = TypeArgument.Supplier;
                     Init("suppliers");
-                    Pars_suppliers();
+                    try
+                    {
+                        Pars_suppliers();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Logger("Ошибка при парсинге suppliers", e);
+                    }
                     break;
                 case "customer":
                     Typeparsing = TypeArgument.Customer;
                     Init("customers");
-                    Pars_customers();
+                    try
+                    {
+                        Pars_customers();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Logger("Ошибка при парсинге customers", e);
+                    }
                     break;
                 default:
                     Console.WriteLine("Используйте customer, supplier или contr223 в качестве аргументов");
@@ -113,6 +134,12 @@ namespace ParserContracts223
         {
             Log.Logger("Время начала парсинга contracts223");
             List<string> Listurl = FileList.GetUrl("/download/opendata/contracts_223fz");
+            if (Listurl.Count == 0)
+            {
+                Log.Logger("Получен пустой список файлов contracts223");
+                return;
+            }
+
             foreach (var l in Listurl)
             {
                 ParserContract223 p = new ParserContract223(l);
@@ -128,6 +155,12 @@ namespace ParserContracts223
         {
             Log.Logger("Время начала парсинга suppliers");
             List<string> Listurl = FileList.GetUrl("/download/opendata/suppliers-");
+            if (Listurl.Count == 0)
+            {
+                Log.Logger("Получен пустой список файлов suppliers");
+                return;
+            }
+
             foreach (var l in Listurl)
             {
                 ParserSuppliers p = new ParserSuppliers(l);
@@ -144,6 +177,12 @@ namespace ParserContracts223
         {
             Log.Logger("Время начала парсинга customers");
             List<string> Listurl = FileList.GetUrl("/download/opendata/customers-");
+            if (Listurl.Count == 0)
+            {
+                Log.Logger("Получен пустой список файлов customers");
+                return;
+            }
+
             foreach (var l in Listurl)
             {
                 ParserCustomers p = new ParserCustomers(l);
