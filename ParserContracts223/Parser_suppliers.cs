@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
+using System.Text;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json.Linq;
 
@@ -34,7 +34,7 @@ namespace ParserContracts223
             FileInfo fileInf = new FileInfo(file);
             if (fileInf.Exists)
             {
-                using (StreamReader sr = new StreamReader(file, System.Text.Encoding.Default))
+                using (StreamReader sr = new StreamReader(file, Encoding.Default))
                 {
                     string line;
                     while ((line = sr.ReadLine()) != null)

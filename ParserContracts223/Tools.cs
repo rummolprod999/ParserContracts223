@@ -1,4 +1,6 @@
-﻿namespace ParserContracts223
+﻿using System;
+
+namespace ParserContracts223
 {
     public class Tools
     {
@@ -6,7 +8,7 @@
         {
             string st = s;
             st = st.Trim();
-            if (st.StartsWith("["))
+            if (st.StartsWith("[", StringComparison.Ordinal))
             {
                 st = st.Remove(0, 1);
             }

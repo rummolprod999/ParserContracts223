@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Microsoft.SqlServer.Server;
 using System.IO.Compression;
 
 namespace ParserContracts223
@@ -12,7 +11,7 @@ namespace ParserContracts223
             FileInfo fileInf = new FileInfo(ar);
             if (fileInf.Exists)
             {
-                int ind = ar.LastIndexOf(".");
+                int ind = ar.LastIndexOf(".", StringComparison.Ordinal);
                 string extractPath = ar.Substring(0, ind);
                 try
                 {

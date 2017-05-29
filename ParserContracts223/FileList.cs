@@ -1,12 +1,9 @@
 ﻿using System;
-using System.IO;
-using System.Net;
-using System.Web;
-using System.Text.RegularExpressions;
-using HtmlAgilityPack;
-using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using HtmlAgilityPack;
 
 namespace ParserContracts223
 {
@@ -26,7 +23,7 @@ namespace ParserContracts223
                 using (var readers = new StreamReader(streams))
                 {
                     string html = readers.ReadToEnd();
-                    HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                    HtmlDocument doc = new HtmlDocument();
                     doc.LoadHtml(html);
                     HtmlNodeCollection c =
                         doc.DocumentNode.SelectNodes($"//a[contains(@href,'{findS}')]");
