@@ -14,8 +14,6 @@ namespace ParserContracts223
         public static List<string> GetUrl(string findS)
         {
             List<string> urls = new List<string>();
-            string[] years = new[] {"_2015", "_2016", "_2017"};
-
             var request = WebRequest.Create(_urlClearspending);
             using (var responses = request.GetResponse())
             {
@@ -36,7 +34,7 @@ namespace ParserContracts223
                                 string u = n.Attributes["href"].Value;
                                 if (Program.Typeparsing == TypeArgument.Contr223)
                                 {
-                                    if (years.Any(t => u.IndexOf(t, StringComparison.Ordinal) != -1))
+                                    if (Program.Years.Any(t => u.IndexOf(t, StringComparison.Ordinal) != -1))
                                     {
                                         u = $"https://clearspending.ru{u}";
                                         urls.Add(u);
