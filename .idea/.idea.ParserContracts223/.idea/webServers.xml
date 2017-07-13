@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="faed785a-4584-4665-adb5-1db3573f8ebd" name="ihor" url="http://ih246512.vds.myihor.ru">
-        <fileTransfer host="ih246512.vds.myihor.ru" port="22" accessType="SFTP">
+      <webServer id="879af397-7c0e-4911-85b2-03dfa4aab8d2" name="Belarus" url="http://86.57.133.250">
+        <fileTransfer host="86.57.133.250" port="22" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
