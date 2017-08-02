@@ -75,6 +75,7 @@ namespace ParserContracts223
                 string ogrn_customer = (string) json.SelectToken("ogrn") ?? "";
                 string region_code_customer = (string) json.SelectToken("regionCode") ?? "";
                 string full_name_customer = (string) json.SelectToken("fullName") ?? "";
+                string short_name_customer = (string) json.SelectToken("shortName") ?? "";
                 string fax_customer = (string) json.SelectToken("fax") ?? "";
                 string email_customer = (string) json.SelectToken("url") ?? "не указан";
                 string phone_customer = (string) json.SelectToken("phone") ?? "";
@@ -96,12 +97,7 @@ namespace ParserContracts223
                 if (!res_read)
                 {
                     string add_customer =
-                        $"INSERT INTO od_customer{Program.Suffix} SET regNumber = @customer_regnumber, inn = @inn_customer, " +
-                        $"kpp = @kpp_customer, contracts_count = @contracts_count_customer, contracts223_count = @contracts223_count_customer," +
-                        $"contracts_sum = @contracts_sum_customer, contracts223_sum = @contracts223_sum_customer," +
-                        $"ogrn = @ogrn_customer, region_code = @region_code_customer, full_name = @full_name_customer," +
-                        $"postal_address = @postal_address_customer, phone = @phone_customer, fax = @fax_customer," +
-                        $"email = @email_customer, contact_name = @contact_name_customer";
+                        $"INSERT INTO od_customer{Program.Suffix} SET regNumber = @customer_regnumber, inn = @inn_customer, kpp = @kpp_customer, contracts_count = @contracts_count_customer, contracts223_count = @contracts223_count_customer,contracts_sum = @contracts_sum_customer, contracts223_sum = @contracts223_sum_customer,ogrn = @ogrn_customer, region_code = @region_code_customer, full_name = @full_name_customer,postal_address = @postal_address_customer, phone = @phone_customer, fax = @fax_customer,email = @email_customer, contact_name = @contact_name_customer, short_name = @short_name_customer";
                     MySqlCommand cmd2 = new MySqlCommand(add_customer, connect);
                     cmd2.Prepare();
                     cmd2.Parameters.AddWithValue("@customer_regnumber", customer_regnumber);
@@ -119,6 +115,7 @@ namespace ParserContracts223
                     cmd2.Parameters.AddWithValue("@fax_customer", fax_customer);
                     cmd2.Parameters.AddWithValue("@email_customer", email_customer);
                     cmd2.Parameters.AddWithValue("@contact_name_customer", contact_name_customer);
+                    cmd2.Parameters.AddWithValue("@short_name_customer", short_name_customer);
                     int add_c = cmd2.ExecuteNonQuery();
                     if (add_c > 0)
                     {
@@ -132,12 +129,7 @@ namespace ParserContracts223
                 else
                 {
                     string update_customer =
-                        $"UPDATE od_customer{Program.Suffix} SET inn = @inn_customer, " +
-                        $"kpp = @kpp_customer, contracts_count = @contracts_count_customer, contracts223_count = @contracts223_count_customer," +
-                        $"contracts_sum = @contracts_sum_customer, contracts223_sum = @contracts223_sum_customer," +
-                        $"ogrn = @ogrn_customer, region_code = @region_code_customer, full_name = @full_name_customer," +
-                        $"postal_address = @postal_address_customer, phone = @phone_customer, fax = @fax_customer," +
-                        $"email = @email_customer, contact_name = @contact_name_customer WHERE regNumber = @customer_regnumber";
+                        $"UPDATE od_customer{Program.Suffix} SET inn = @inn_customer, kpp = @kpp_customer, contracts_count = @contracts_count_customer, contracts223_count = @contracts223_count_customer,contracts_sum = @contracts_sum_customer, contracts223_sum = @contracts223_sum_customer,ogrn = @ogrn_customer, region_code = @region_code_customer, full_name = @full_name_customer,postal_address = @postal_address_customer, phone = @phone_customer, fax = @fax_customer,email = @email_customer, contact_name = @contact_name_customer, short_name = @short_name_customer WHERE regNumber = @customer_regnumber";
                     MySqlCommand cmd3 = new MySqlCommand(update_customer, connect);
                     cmd3.Prepare();
                     cmd3.Parameters.AddWithValue("@customer_regnumber", customer_regnumber);
@@ -155,6 +147,7 @@ namespace ParserContracts223
                     cmd3.Parameters.AddWithValue("@fax_customer", fax_customer);
                     cmd3.Parameters.AddWithValue("@email_customer", email_customer);
                     cmd3.Parameters.AddWithValue("@contact_name_customer", contact_name_customer);
+                    cmd3.Parameters.AddWithValue("@short_name_customer", short_name_customer);
                     int add_c = cmd3.ExecuteNonQuery();
                     if (add_c > 0)
                     {

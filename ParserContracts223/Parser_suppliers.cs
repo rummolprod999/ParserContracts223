@@ -128,12 +128,7 @@ namespace ParserContracts223
                     else
                     {
                         string cmdUpdateWithKpp =
-                            $"UPDATE od_supplier{Program.Suffix} SET contracts_count = @contracts_count, " +
-                            $"contracts223_count = @contracts223_count, contracts_sum = @contracts_sum, " +
-                            $"contracts223_sum = @contracts223_sum, ogrn = @ogrn,region_code = @region_code, " +
-                            $"organizationName = @organizationName,postal_address = @postal_address, " +
-                            $"contactPhone = @contactPhone,contactFax = @contactFax, contactEMail = @contactEMail, " +
-                            $"contact_name = @contact_name WHERE inn = @inn AND kpp =@kpp";
+                            $"UPDATE od_supplier{Program.Suffix} SET contracts_count = @contracts_count, contracts223_count = @contracts223_count, contracts_sum = @contracts_sum, contracts223_sum = @contracts223_sum, ogrn = @ogrn,region_code = @region_code, organizationName = @organizationName,postal_address = @postal_address, contactPhone = @contactPhone,contactFax = @contactFax, contactEMail = @contactEMail, contact_name = @contact_name WHERE inn = @inn AND kpp =@kpp";
                         MySqlCommand cmdUpdateKpp = new MySqlCommand(cmdUpdateWithKpp, connect);
                         cmdUpdateKpp.Prepare();
                         cmdUpdateKpp.Parameters.AddWithValue("@inn", inn);
