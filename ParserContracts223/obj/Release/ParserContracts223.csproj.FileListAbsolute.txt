@@ -12,3 +12,4 @@
 /home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/HtmlAgilityPack.CssSelectors.pdb
 /home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/Newtonsoft.Json.xml
 /home/alex/RiderProjects/ParserContracts223/ParserContracts223/obj/Release/ParserContracts223.pdb
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/MySql.Data.xml

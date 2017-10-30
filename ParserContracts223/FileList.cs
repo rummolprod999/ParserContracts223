@@ -53,5 +53,31 @@ namespace ParserContracts223
 
             return urls;
         }
+
+        public static List<string> GetUrl(string findS, int count)
+        {
+            int cn = count;
+            
+            List<string> u = new List<string>();
+            while (true)
+            {
+                if (count == 0)
+                {
+                    Log.Logger($"Не скачали за {cn} попыток");
+                    break;
+                }
+                try
+                {
+                    u = GetUrl(findS);
+                    return u;
+                }
+                catch (Exception e)
+                {
+                    Log.Logger("Ошибка скачивания", e);
+                    count--;
+                }
+            }
+            return u;
+        }
     }
 }

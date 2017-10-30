@@ -36,6 +36,7 @@ namespace ParserContracts223
         public static int RegnumNullCustomer = 0;
         public static TypeArgument Typeparsing;
         public static string PathProgram;
+        private static int Count = 20;
 
         public static void Main(string[] args)
         {
@@ -143,7 +144,7 @@ namespace ParserContracts223
         private static void Pars_contr223()
         {
             Log.Logger("Время начала парсинга contracts223");
-            List<string> Listurl = FileList.GetUrl("/download/opendata/contracts_223fz");
+            List<string> Listurl = FileList.GetUrl("/download/opendata/contracts_223fz", Count);
             if (Listurl.Count == 0)
             {
                 Log.Logger("Получен пустой список файлов contracts223");
@@ -164,7 +165,7 @@ namespace ParserContracts223
         private static void Pars_suppliers()
         {
             Log.Logger("Время начала парсинга suppliers");
-            List<string> Listurl = FileList.GetUrl("/download/opendata/suppliers-");
+            List<string> Listurl = FileList.GetUrl("/download/opendata/suppliers-", Count);
             if (Listurl.Count == 0)
             {
                 Log.Logger("Получен пустой список файлов suppliers");
@@ -186,7 +187,7 @@ namespace ParserContracts223
         private static void Pars_customers()
         {
             Log.Logger("Время начала парсинга customers");
-            List<string> Listurl = FileList.GetUrl("/download/opendata/customers-");
+            List<string> Listurl = FileList.GetUrl("/download/opendata/customers-", Count);
             if (Listurl.Count == 0)
             {
                 Log.Logger("Получен пустой список файлов customers");
