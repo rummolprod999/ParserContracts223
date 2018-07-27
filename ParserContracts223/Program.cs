@@ -63,6 +63,7 @@ namespace ParserContracts223
                     {
                         Log.Logger("Ошибка при парсинге contr223", e);
                     }
+
                     break;
                 case "supplier":
                     Typeparsing = TypeArgument.Supplier;
@@ -75,6 +76,7 @@ namespace ParserContracts223
                     {
                         Log.Logger("Ошибка при парсинге suppliers", e);
                     }
+
                     break;
                 case "customer":
                     Typeparsing = TypeArgument.Customer;
@@ -87,6 +89,7 @@ namespace ParserContracts223
                     {
                         Log.Logger("Ошибка при парсинге customers", e);
                     }
+
                     break;
                 default:
                     Console.WriteLine("Используйте customer, supplier или contr223 в качестве аргументов");
@@ -124,6 +127,33 @@ namespace ParserContracts223
                     _tempdir = set.TempdirCustomer;
                     break;
             }
+
+            switch (arg)
+            {
+                case "contr223":
+                    _logdir = $"{_logdir}{Path.DirectorySeparatorChar}contr223";
+                    break;
+                case "suppliers":
+                    _logdir = $"{_logdir}{Path.DirectorySeparatorChar}supplier";
+                    break;
+                case "customers":
+                    _logdir = $"{_logdir}{Path.DirectorySeparatorChar}customer";
+                    break;
+            }
+
+            switch (arg)
+            {
+                case "contr223":
+                    _tempdir = set.TempdirContract223;
+                    break;
+                case "suppliers":
+                    _tempdir = set.TempdirSupplier;
+                    break;
+                case "customers":
+                    _tempdir = set.TempdirCustomer;
+                    break;
+            }
+
             if (Directory.Exists(Tempdir))
             {
                 DirectoryInfo dirInfo = new DirectoryInfo(Tempdir);
@@ -134,10 +164,12 @@ namespace ParserContracts223
             {
                 Directory.CreateDirectory(Tempdir);
             }
+
             if (!Directory.Exists(Logdir))
             {
                 Directory.CreateDirectory(Logdir);
             }
+
             FileLog = $"{Logdir}{Path.DirectorySeparatorChar}{arg}_{LocalDate:dd_MM_yyyy}.log";
         }
 

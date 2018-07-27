@@ -8,3 +8,5 @@
 /home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/HtmlAgilityPack.CssSelectors.dll
 /home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/MySql.Data.dll
 /home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/Newtonsoft.Json.dll
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/bin/Release/ParserContracts223.pdb
+/home/alex/RiderProjects/ParserContracts223/ParserContracts223/obj/Release/ParserContracts223.pdb
